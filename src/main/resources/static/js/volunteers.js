@@ -1,0 +1,10 @@
+
+let data=[];const $=id=>document.getElementById(id);
+async function load(){try{data=await api(API.volunteers);render(data)}catch(e){$("rows").innerHTML=`<tr><td colspan="5" class="empty">${esc(e.message)}</td></tr>`}}
+function render(a){$("rows").innerHTML=a.length?a.map(x=>`<tr><td><div class="cell"><div class="avatar">${esc(initials(x.name))}</div><div><strong>${esc(x.name)}</strong><div class="muted">ID #${x.id}</div></div></div></td><td>${esc(x.email)}</td><td>${esc(x.phone)}</td><td id="h${x.id}">—</td><td><div class="table-actions"><button class="btn ghost small" onclick="edit(${x.id})">Edit</button><button class="btn danger small" onclick="del(${x.id})">Delete</button></div></td></tr>`).join(""):'<tr><td colspan="5" class="empty">No volunteers found.</td></tr>';a.forEach(x=>api(`${API.volunteers}/${x.id}/hours`).then(h=>{const e=$("h"+x.id);if(e)e.textContent=Number(h).toFixed(1)+" h"}).catch(()=>{}))}
+function openVolunteer(x=null){$("modal").classList.remove("hidden");$("modalTitle").textContent=x?"Edit volunteer":"Add volunteer";$("id").value=x?.id||"";$("name").value=x?.name||"";$("email").value=x?.email||"";$("phone").value=x?.phone||""}
+function closeVolunteer(){$("modal").classList.add("hidden")}function edit(i){openVolunteer(data.find(x=>x.id===i))}
+async function del(i){if(!confirm("Delete this volunteer?"))return;try{await api(`${API.volunteers}/${i}`,{method:"DELETE"});alertBox("Volunteer deleted successfully.");load()}catch(e){alertBox(e.message,"error")}}
+$("form").addEventListener("submit",async e=>{e.preventDefault();const i=$("id").value;const body={name:$("name").value.trim(),email:$("email").value.trim(),phone:$("phone").value.trim()};try{await api(i?`${API.volunteers}/${i}`:API.volunteers,{method:i?"PUT":"POST",body:JSON.stringify(body)});closeVolunteer();alertBox(i?"Volunteer updated successfully.":"Volunteer added successfully.");load()}catch(e){alertBox(e.message,"error")}})
+$("search").addEventListener("input",e=>{const q=e.target.value.toLowerCase();render(data.filter(x=>`${x.name} ${x.email} ${x.phone}`.toLowerCase().includes(q)))});
+load();
