@@ -69,13 +69,8 @@ public class SignUpService {
 
     public List<SignUp> getSignupsByEvent(Long eventId) {
 
-        return signUpRepository.findAll()
-                .stream()
-                .filter(signup ->
-                        signup.getEvent().getId().equals(eventId))
-                .toList();
+        return signUpRepository.findByEventId(eventId);
     }
-
     public List<SignUp> getSignupsByVolunteer(Long volunteerId) {
 
         return signUpRepository.findAll()
@@ -95,4 +90,5 @@ public class SignUpService {
 
         signUpRepository.deleteById(id);
     }
+
 }

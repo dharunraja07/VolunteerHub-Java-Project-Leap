@@ -75,4 +75,12 @@ public class AttendanceController {
                 "Attendance deleted successfully"
         );
     }
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity<List<AttendanceRecord>> getAttendanceByEvent(
+            @PathVariable Long eventId) {
+
+        return ResponseEntity.ok(
+                attendanceService.getAttendanceByEvent(eventId)
+        );
+    }
 }
