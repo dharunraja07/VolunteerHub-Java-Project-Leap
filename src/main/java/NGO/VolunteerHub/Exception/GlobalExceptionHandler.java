@@ -58,4 +58,34 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
+    @ExceptionHandler(DuplicateAttendanceException.class)
+    public ResponseEntity<Map<String, Object>> handleDuplicateAttendance(
+            DuplicateAttendanceException exception) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", 409);
+        response.put("error", "Duplicate Attendance");
+        response.put("message", exception.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(response);
+    }
+    @ExceptionHandler(InvalidAttendanceException.class)
+    public ResponseEntity<Map<String, Object>> handleInvalidAttendance(
+            InvalidAttendanceException exception) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", 400);
+        response.put("error", "Invalid Attendance");
+        response.put("message", exception.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
 }
