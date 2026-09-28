@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VolunteerHub | Events</title>
+<meta name="description" content="VolunteerHub NGO volunteer management dashboard for events, volunteers, signups and attendance.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f172a">
+<meta name="color-scheme" content="light">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<body data-page="events">
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="brand-mark">V</div><div><b>VolunteerHub</b><small>NGO Management</small></div></div>
+<nav class="nav">
+<a data-nav="dashboard" href="index.html">⌂ <span>Dashboard</span></a>
+<a data-nav="events" href="events.html">◫ <span>Events</span></a>
+<a data-nav="volunteers" href="volunteers.html">♙ <span>Volunteers</span></a>
+<a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
+<a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
+</nav>
+<div class="side-foot"><i></i> System online</div>
+</aside>
+<main class="main" id="main-content">
+<header class="topbar">
+<div><small class="eyebrow">VOLUNTEERHUB</small><h1>Events</h1></div>
+<div class="online"><i></i> API Connected</div>
+</header>
+
+<section class="page">
+<div id="alert"></div>
+<div class="toolbar"><div><h2>All events</h2><p>Create, update and manage NGO activities.</p></div><div class="search"><span>⌕</span><input id="search" placeholder="Search events..."></div><button class="btn primary" onclick="openEvent()">+ Create event</button></div>
+<section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Event</th><th>Date</th><th>Location</th><th>Capacity</th><th>Actions</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">Loading...</td></tr></tbody></table></div></section>
+</section>
+<div id="modal" class="modal hidden"><div class="shade" onclick="closeEvent()"></div><div class="modal-card"><div class="modal-head"><div><h2 id="modalTitle">Create event</h2><p>Enter the event details.</p></div><button onclick="closeEvent()">×</button></div>
+<form id="form"><input id="id" type="hidden"><div class="form-grid">
+<label><span>Title</span><input id="title" required placeholder="Beach Cleanup"></label>
+<label><span>Event date</span><input id="date" type="date" required></label>
+<label class="full"><span>Description</span><textarea id="description" rows="3" required placeholder="Describe the event..."></textarea></label>
+<label><span>Location</span><input id="location" required placeholder="Marina Beach"></label>
+<label><span>Capacity</span><input id="capacity" type="number" min="1" required placeholder="30"></label>
+</div><div class="modal-actions"><button type="button" class="btn ghost" onclick="closeEvent()">Cancel</button><button class="btn primary">Save event</button></div></form></div></div>
+
+</main>
+</div>
+<script src="js/common.js" defer></script>
+<script src="js/events.js" defer></script>
+</body>
+</html>

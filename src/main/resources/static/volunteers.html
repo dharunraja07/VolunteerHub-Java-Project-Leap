@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VolunteerHub | Volunteers</title>
+<meta name="description" content="VolunteerHub NGO volunteer management dashboard for events, volunteers, signups and attendance.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f172a">
+<meta name="color-scheme" content="light">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<body data-page="volunteers">
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="brand-mark">V</div><div><b>VolunteerHub</b><small>NGO Management</small></div></div>
+<nav class="nav">
+<a data-nav="dashboard" href="index.html">⌂ <span>Dashboard</span></a>
+<a data-nav="events" href="events.html">◫ <span>Events</span></a>
+<a data-nav="volunteers" href="volunteers.html">♙ <span>Volunteers</span></a>
+<a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
+<a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
+</nav>
+<div class="side-foot"><i></i> System online</div>
+</aside>
+<main class="main" id="main-content">
+<header class="topbar">
+<div><small class="eyebrow">VOLUNTEERHUB</small><h1>Volunteers</h1></div>
+<div class="online"><i></i> API Connected</div>
+</header>
+
+<section class="page">
+<div id="alert"></div>
+<div class="toolbar"><div><h2>Volunteer directory</h2><p>Manage registered volunteers and their contribution hours.</p></div><div class="search"><span>⌕</span><input id="search" placeholder="Search volunteers..."></div><button class="btn primary" onclick="openVolunteer()">+ Add volunteer</button></div>
+<section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Volunteer</th><th>Email</th><th>Phone</th><th>Total hours</th><th>Actions</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">Loading...</td></tr></tbody></table></div></section>
+</section>
+<div id="modal" class="modal hidden"><div class="shade" onclick="closeVolunteer()"></div><div class="modal-card"><div class="modal-head"><div><h2 id="modalTitle">Add volunteer</h2><p>Register a volunteer.</p></div><button onclick="closeVolunteer()">×</button></div>
+<form id="form"><input id="id" type="hidden"><div class="form-grid one">
+<label><span>Name</span><input id="name" required placeholder="Volunteer name"></label>
+<label><span>Email</span><input id="email" type="email" required placeholder="name@example.com"></label>
+<label><span>Phone</span><input id="phone" required placeholder="9876543210"></label>
+</div><div class="modal-actions"><button type="button" class="btn ghost" onclick="closeVolunteer()">Cancel</button><button class="btn primary">Save volunteer</button></div></form></div></div>
+
+</main>
+</div>
+<script src="js/common.js" defer></script>
+<script src="js/volunteers.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VolunteerHub | Signups</title>
+<meta name="description" content="VolunteerHub NGO volunteer management dashboard for events, volunteers, signups and attendance.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f172a">
+<meta name="color-scheme" content="light">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<body data-page="signups">
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="brand-mark">V</div><div><b>VolunteerHub</b><small>NGO Management</small></div></div>
+<nav class="nav">
+<a data-nav="dashboard" href="index.html">⌂ <span>Dashboard</span></a>
+<a data-nav="events" href="events.html">◫ <span>Events</span></a>
+<a data-nav="volunteers" href="volunteers.html">♙ <span>Volunteers</span></a>
+<a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
+<a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
+</nav>
+<div class="side-foot"><i></i> System online</div>
+</aside>
+<main class="main" id="main-content">
+<header class="topbar">
+<div><small class="eyebrow">VOLUNTEERHUB</small><h1>Signups</h1></div>
+<div class="online"><i></i> API Connected</div>
+</header>
+
+<section class="page"><div id="alert"></div>
+<div class="two-col top-gap">
+<section class="panel pad"><div class="panel-head"><div><h3>Register a volunteer</h3><p>Join a volunteer to an event.</p></div></div>
+<form id="signupForm" class="form-stack"><label><span>Event</span><select id="event" required><option value="">Select an event</option></select></label><label><span>Volunteer</span><select id="volunteer" required><option value="">Select a volunteer</option></select></label><button class="btn primary">Create signup</button></form></section>
+<section class="panel pad"><div class="panel-head"><div><h3>Event participants</h3><p>Choose an event to see who joined.</p></div></div><select id="filter" class="select"><option value="">Select an event</option></select><div id="participants" class="list"><div class="empty">Select an event.</div></div></section>
+</div>
+<section class="panel table-panel top-gap"><div class="panel-head"><div><h3>All signups</h3><p>Every volunteer-event registration.</p></div></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Volunteer</th><th>Event</th><th>Date</th><th>Action</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">Loading...</td></tr></tbody></table></div></section>
+</section>
+
+</main>
+</div>
+<script src="js/common.js" defer></script>
+<script src="js/signups.js" defer></script>
+</body>
+</html>

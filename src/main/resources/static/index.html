@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VolunteerHub | Dashboard</title>
+<meta name="description" content="VolunteerHub NGO volunteer management dashboard for events, volunteers, signups and attendance.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f172a">
+<meta name="color-scheme" content="light">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<body data-page="dashboard">
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="brand-mark">V</div><div><b>VolunteerHub</b><small>NGO Management</small></div></div>
+<nav class="nav">
+<a data-nav="dashboard" href="index.html">⌂ <span>Dashboard</span></a>
+<a data-nav="events" href="events.html">◫ <span>Events</span></a>
+<a data-nav="volunteers" href="volunteers.html">♙ <span>Volunteers</span></a>
+<a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
+<a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
+</nav>
+<div class="side-foot"><i></i> System online</div>
+</aside>
+<main class="main" id="main-content">
+<header class="topbar">
+<div><small class="eyebrow">VOLUNTEERHUB</small><h1>Dashboard</h1></div>
+<div class="online"><i></i> API Connected</div>
+</header>
+
+<section class="page">
+<div class="hero">
+<div class="hero-copy"><span class="tag">NGO OPERATIONS</span>
+<h2>Make every volunteer hour count.</h2>
+<p>Manage events, volunteers, signups and attendance from one clean workspace.</p>
+<div class="actions"><a class="btn primary" href="events.html">View events</a><a class="btn ghost" href="volunteers.html">Manage volunteers</a></div></div>
+<div class="hero-orb"><strong>V</strong><span>VolunteerHub</span></div>
+</div>
+<div class="section-title"><div><h2>Workspace overview</h2><p>Live information from your Spring Boot database.</p></div></div>
+<div class="stats">
+<a class="stat" href="events.html"><b class="ico blue">◫</b><div><small>Events</small><strong id="eventCount">—</strong><em>Total events</em></div></a>
+<a class="stat" href="volunteers.html"><b class="ico green">♙</b><div><small>Volunteers</small><strong id="volunteerCount">—</strong><em>Registered people</em></div></a>
+<a class="stat" href="signups.html"><b class="ico purple">☷</b><div><small>Signups</small><strong id="signupCount">—</strong><em>Registrations</em></div></a>
+<a class="stat" href="attendance.html"><b class="ico orange">✓</b><div><small>Attendance</small><strong id="attendanceCount">—</strong><em>Recorded entries</em></div></a>
+</div>
+<div class="two-col">
+<section class="panel"><div class="panel-head"><div><h3>Upcoming events</h3><p>Latest events in the system.</p></div><a href="events.html">View all →</a></div><div id="upcoming" class="list"><div class="empty">Loading...</div></div></section>
+<section class="panel"><div class="panel-head"><div><h3>Quick actions</h3><p>Common organizer tasks.</p></div></div>
+<div class="quick"><a href="events.html"><b>+</b><div><strong>Create event</strong><small>Add a new NGO activity</small></div>→</a>
+<a href="volunteers.html"><b>+</b><div><strong>Add volunteer</strong><small>Register a new volunteer</small></div>→</a>
+<a href="signups.html"><b>↗</b><div><strong>Manage signups</strong><small>See event participants</small></div>→</a>
+<a href="attendance.html"><b>✓</b><div><strong>Record attendance</strong><small>Track presence and hours</small></div>→</a></div></section>
+</div>
+</section>
+
+</main>
+</div>
+<script src="js/common.js" defer></script>
+<script src="js/dashboard.js" defer></script>
+</body>
+</html>
