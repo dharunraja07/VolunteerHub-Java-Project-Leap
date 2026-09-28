@@ -146,4 +146,9 @@ public class AttendanceService {
                     "Hours cannot be recorded when volunteer did not attend");
         }
     }
+    public double getTotalHoursByVolunteer(Long volunteerId) {
+
+        return attendanceRepository
+                .getTotalHoursByVolunteerId(volunteerId);
+    }
 }

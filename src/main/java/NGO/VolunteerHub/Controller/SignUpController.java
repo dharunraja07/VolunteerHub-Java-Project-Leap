@@ -1,15 +1,19 @@
 package NGO.VolunteerHub.Controller;
+
 import NGO.VolunteerHub.Model.SignUp;
 import NGO.VolunteerHub.Service.SignUpService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/signups")
 @CrossOrigin
 public class SignUpController {
+
     private final SignUpService signUpService;
+
     public SignUpController(SignUpService signUpService) {
         this.signUpService = signUpService;
     }
@@ -18,6 +22,7 @@ public class SignUpController {
     public ResponseEntity<SignUp> createSignup(
             @RequestParam Long eventId,
             @RequestParam Long volunteerId) {
+
         SignUp signup =
                 signUpService.createSignup(eventId, volunteerId);
 
@@ -27,14 +32,17 @@ public class SignUpController {
     @GetMapping
     public ResponseEntity<List<SignUp>> getAllSignups() {
         return ResponseEntity.ok(
-                signUpService.getAllSignups());
+                signUpService.getAllSignups()
+        );
     }
 
     @GetMapping("/event/{eventId}")
     public ResponseEntity<List<SignUp>> getSignupsByEvent(
             @PathVariable Long eventId) {
+
         return ResponseEntity.ok(
-                signUpService.getSignupsByEvent(eventId));
+                signUpService.getSignupsByEvent(eventId)
+        );
     }
 
     @GetMapping("/volunteer/{volunteerId}")
@@ -42,7 +50,8 @@ public class SignUpController {
             @PathVariable Long volunteerId) {
 
         return ResponseEntity.ok(
-                signUpService.getSignupsByVolunteer(volunteerId));
+                signUpService.getSignupsByVolunteer(volunteerId)
+        );
     }
 
     @DeleteMapping("/{id}")
@@ -50,7 +59,9 @@ public class SignUpController {
             @PathVariable Long id) {
 
         signUpService.deleteSignup(id);
+
         return ResponseEntity.ok(
-                "Signup deleted successfully");
+                "Signup deleted successfully"
+        );
     }
 }

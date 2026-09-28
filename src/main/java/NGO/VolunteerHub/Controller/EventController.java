@@ -4,6 +4,8 @@ import NGO.VolunteerHub.Service.EventService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/events")
 @CrossOrigin
@@ -14,7 +16,7 @@ public class EventController {
 
     // CREATE EVENT
     @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
+    public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) {
 
         Event savedEvent = eventService.createEvent(event);
 
@@ -40,10 +42,12 @@ public class EventController {
     @PutMapping("/{id}")
     public ResponseEntity<Event> updateEvent(
             @PathVariable Long id,
-            @RequestBody Event event) {
+            @Valid @RequestBody Event event) {
         Event updatedEvent =
                 eventService.updateEvent(id, event);
-        return ResponseEntity.ok(updatedEvent);}
+
+        return ResponseEntity.ok(updatedEvent);
+    }
 
     // DELETE EVENT
     @DeleteMapping("/{id}")
