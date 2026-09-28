@@ -11,10 +11,11 @@
 
 <link rel="stylesheet" href="css/style.css">
 </head>
-<a class="skip-link" href="#main-content">Skip to content</a>
 <body data-page="volunteers">
+<a class="skip-link" href="#main-content">Skip to content</a>
 <div class="app">
-<aside class="sidebar">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
 <div class="brand"><div class="brand-mark">V</div><div><b>VolunteerHub</b><small>NGO Management</small></div></div>
 <nav class="nav">
 <a data-nav="dashboard" href="index.html">⌂ <span>Dashboard</span></a>
@@ -27,6 +28,7 @@
 </aside>
 <main class="main" id="main-content">
 <header class="topbar">
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><span></span><span></span><span></span></button>
 <div><small class="eyebrow">VOLUNTEERHUB</small><h1>Volunteers</h1></div>
 <div class="online"><i></i> API Connected</div>
 </header>
