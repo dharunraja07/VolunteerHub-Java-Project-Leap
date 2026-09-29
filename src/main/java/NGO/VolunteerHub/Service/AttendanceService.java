@@ -6,7 +6,9 @@ import NGO.VolunteerHub.Exception.ResourceNotFoundException;
 import NGO.VolunteerHub.Model.AttendanceRecord;
 import NGO.VolunteerHub.Model.SignUp;
 import NGO.VolunteerHub.Repository.AttendanceRepository;
+import NGO.VolunteerHub.Repository.EventRepository;
 import NGO.VolunteerHub.Repository.SignUpRepository;
+import NGO.VolunteerHub.Repository.VolunteerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,42 +16,43 @@ import java.util.List;
 @Service
 public class AttendanceService {
 
+    private static final double MAX_HOURS_PER_RECORD = 24.0;
+
     private final AttendanceRepository attendanceRepository;
     private final SignUpRepository signUpRepository;
+    private final EventRepository eventRepository;
+    private final VolunteerRepository volunteerRepository;
 
     public AttendanceService(
             AttendanceRepository attendanceRepository,
-            SignUpRepository signUpRepository) {
+            SignUpRepository signUpRepository,
+            EventRepository eventRepository,
+            VolunteerRepository volunteerRepository) {
 
         this.attendanceRepository = attendanceRepository;
         this.signUpRepository = signUpRepository;
+        this.eventRepository = eventRepository;
+        this.volunteerRepository = volunteerRepository;
     }
 
-    // CREATE ATTENDANCE
     public AttendanceRecord createAttendance(
             Long signupId,
             boolean attended,
             double hours) {
 
-        // Check whether signup exists
         SignUp signup = signUpRepository.findById(signupId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "Signup not found with ID: " + signupId));
 
-        // Check whether attendance already exists
         if (attendanceRepository.existsBySignupId(signupId)) {
-
             throw new DuplicateAttendanceException(
                     "Attendance already exists for signup ID: " + signupId);
         }
 
-        // Validate attendance details
         validateAttendance(attended, hours);
 
-        // Create attendance record
         AttendanceRecord attendance = new AttendanceRecord();
-
         attendance.setSignup(signup);
         attendance.setAttended(attended);
         attendance.setHours(hours);
@@ -57,68 +60,59 @@ public class AttendanceService {
         return attendanceRepository.save(attendance);
     }
 
-
-    // GET ALL ATTENDANCE
     public List<AttendanceRecord> getAllAttendance() {
-
         return attendanceRepository.findAll();
     }
 
-
-    // GET ATTENDANCE BY ID
     public AttendanceRecord getAttendanceById(Long id) {
-
         return attendanceRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "Attendance not found with ID: " + id));
     }
 
-
-    // GET ATTENDANCE BY EVENT
     public List<AttendanceRecord> getAttendanceByEvent(Long eventId) {
+
+        if (!eventRepository.existsById(eventId)) {
+            throw new ResourceNotFoundException(
+                    "Event not found with ID: " + eventId);
+        }
 
         return attendanceRepository.findBySignupEventId(eventId);
     }
 
-
-    // GET ALL SIGNUPS FOR AN EVENT
     public List<SignUp> getSignupsForAttendance(Long eventId) {
+
+        if (!eventRepository.existsById(eventId)) {
+            throw new ResourceNotFoundException(
+                    "Event not found with ID: " + eventId);
+        }
 
         return signUpRepository.findByEventId(eventId);
     }
 
-
-    // UPDATE ATTENDANCE
     public AttendanceRecord updateAttendance(
             Long id,
             boolean attended,
             double hours) {
 
-        // Find existing attendance
         AttendanceRecord attendance =
                 attendanceRepository.findById(id)
                         .orElseThrow(() ->
                                 new ResourceNotFoundException(
                                         "Attendance not found with ID: " + id));
 
-        // Validate updated attendance details
         validateAttendance(attended, hours);
 
-        // Update attendance
         attendance.setAttended(attended);
         attendance.setHours(hours);
 
         return attendanceRepository.save(attendance);
     }
 
-
-    // DELETE ATTENDANCE
     public void deleteAttendance(Long id) {
 
-        // Check whether attendance exists
         if (!attendanceRepository.existsById(id)) {
-
             throw new ResourceNotFoundException(
                     "Attendance not found with ID: " + id);
         }
@@ -126,27 +120,37 @@ public class AttendanceService {
         attendanceRepository.deleteById(id);
     }
 
-
-    // VALIDATE ATTENDANCE
     private void validateAttendance(
             boolean attended,
             double hours) {
 
-        // Hours cannot be negative
-        if (hours < 0) {
+        if (Double.isNaN(hours) || Double.isInfinite(hours)) {
+            throw new InvalidAttendanceException(
+                    "Hours must be a valid number");
+        }
 
+        if (hours < 0) {
             throw new InvalidAttendanceException(
                     "Hours cannot be negative");
         }
 
-        // Absent volunteer cannot have hours
-        if (!attended && hours > 0) {
+        if (hours > MAX_HOURS_PER_RECORD) {
+            throw new InvalidAttendanceException(
+                    "Hours cannot exceed 24 hours for one attendance record");
+        }
 
+        if (!attended && hours > 0) {
             throw new InvalidAttendanceException(
                     "Hours cannot be recorded when volunteer did not attend");
         }
     }
+
     public double getTotalHoursByVolunteer(Long volunteerId) {
+
+        if (!volunteerRepository.existsById(volunteerId)) {
+            throw new ResourceNotFoundException(
+                    "Volunteer not found with ID: " + volunteerId);
+        }
 
         return attendanceRepository
                 .getTotalHoursByVolunteerId(volunteerId);

@@ -1,8 +1,11 @@
 package NGO.VolunteerHub.Repository;
+
 import NGO.VolunteerHub.Model.SignUp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
+
 @Repository
 public interface SignUpRepository extends JpaRepository<SignUp, Long> {
 
@@ -11,6 +14,8 @@ public interface SignUpRepository extends JpaRepository<SignUp, Long> {
             Long volunteerId);
 
     long countByEventId(Long eventId);
+
+    long countByVolunteerId(Long volunteerId);
 
     List<SignUp> findByEventId(Long eventId);
 }

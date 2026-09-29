@@ -24,27 +24,43 @@
 <a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
 <a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
 </nav>
-<div class="side-foot"><i></i> System online</div>
+
 </aside>
 <main class="main" id="main-content">
 <header class="topbar">
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><span></span><span></span><span></span></button>
 <div><small class="eyebrow">VOLUNTEERHUB</small><h1>Attendance</h1></div>
-<div class="online"><i></i> API Connected</div>
+
 </header>
 
 <section class="page"><div id="alert"></div>
 <div class="two-col">
 <section class="panel pad"><div class="panel-head"><div><h3>Record attendance</h3><p>Mark presence and record hours.</p></div></div>
-<form id="attendanceForm" class="form-stack"><label><span>Signup</span><select id="signup" required><option value="">Select signup</option></select></label>
-<div class="form-grid"><label><span>Attendance</span><select id="present"><option value="true">Present</option><option value="false">Absent</option></select></label><label><span>Hours</span><input id="hours" type="number" min="0" step=".5" value="0" required></label></div>
+<form id="attendanceForm" class="form-stack"><label><span>Signup</span><input class="select-search" id="signupSearch" placeholder="Search volunteer, event or signup ID..." autocomplete="off"><select id="signup" required><option value="">Select signup</option></select></label>
+<div class="form-grid"><label><span>Attendance</span><select id="present"><option value="true">Present</option><option value="false">Absent</option></select></label><label><span>Hours</span><input id="hours" type="number" min="0" max="24" step=".5" value="0" required></label></div>
 <button class="btn primary">Record attendance</button></form></section>
-<section class="panel pad"><div class="panel-head"><div><h3>Volunteer hours</h3><p>Look up total attended hours.</p></div></div>
-<div class="hours-search"><input id="volunteerId" type="number" min="1" placeholder="Volunteer ID"><button class="btn ghost" onclick="checkHours()">Check</button></div>
+<section class="panel pad"><div class="panel-head"><div><h3>Volunteer hours</h3><p>Select a volunteer to view total attended hours.</p></div></div>
+<div class="hours-search"><div class="hours-select-wrap"><input class="select-search" id="hoursVolunteerSearch" placeholder="Search volunteer name or ID..." autocomplete="off"><select id="hoursVolunteer"><option value="">Select a volunteer</option></select></div><button class="btn ghost" onclick="checkHours()">Check</button></div>
 <div class="hours-box"><small>Total volunteer hours</small><strong id="totalHours">—</strong></div></section>
 </div>
-<section class="panel table-panel top-gap"><div class="panel-head"><div><h3>Attendance records</h3><p>Recorded presence and contribution hours.</p></div></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Volunteer</th><th>Event</th><th>Status</th><th>Hours</th><th>Action</th></tr></thead><tbody id="rows"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody></table></div></section>
+<section class="panel table-panel top-gap"><div class="panel-head"><div><h3>Attendance records</h3><p>Recorded presence and contribution hours.</p></div></div><div class="table-wrap"><table><thead><tr><th>Attendance ID</th><th>Volunteer ID</th><th>Volunteer</th><th>Event</th><th>Status</th><th>Hours</th><th>Action</th></tr></thead><tbody id="rows"><tr><td colspan="7" class="empty">Loading...</td></tr></tbody></table></div></section>
 </section>
+
+<div id="editAttendanceModal" class="modal hidden">
+<div class="shade" onclick="closeEditAttendance()"></div>
+<div class="modal-card">
+<div class="modal-head"><div><h2>Edit attendance</h2><p>Update attendance status and contribution hours.</p></div><button type="button" onclick="closeEditAttendance()">×</button></div>
+<form id="editAttendanceForm">
+<input id="editAttendanceId" type="hidden">
+<div class="form-grid one">
+<label><span>Volunteer</span><input id="editVolunteerName" readonly></label>
+<label><span>Event</span><input id="editEventName" readonly></label>
+<label><span>Attendance</span><select id="editPresent"><option value="true">Present</option><option value="false">Absent</option></select></label>
+<label><span>Hours</span><input id="editHours" type="number" min="0" max="24" step=".5" required></label>
+</div>
+<div class="modal-actions"><button type="button" class="btn ghost" onclick="closeEditAttendance()">Cancel</button><button class="btn primary">Save attendance</button></div>
+</form>
+</div></div>
 
 </main>
 </div>

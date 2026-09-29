@@ -24,13 +24,13 @@
 <a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
 <a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
 </nav>
-<div class="side-foot"><i></i> System online</div>
+
 </aside>
 <main class="main" id="main-content">
 <header class="topbar">
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><span></span><span></span><span></span></button>
 <div><small class="eyebrow">VOLUNTEERHUB</small><h1>Volunteers</h1></div>
-<div class="online"><i></i> API Connected</div>
+
 </header>
 
 <section class="page">
@@ -40,9 +40,9 @@
 </section>
 <div id="modal" class="modal hidden"><div class="shade" onclick="closeVolunteer()"></div><div class="modal-card"><div class="modal-head"><div><h2 id="modalTitle">Add volunteer</h2><p>Register a volunteer.</p></div><button onclick="closeVolunteer()">×</button></div>
 <form id="form"><input id="id" type="hidden"><div class="form-grid one">
-<label><span>Name</span><input id="name" required placeholder="Volunteer name"></label>
+<label><span>Name</span><input id="name" required maxlength="100" pattern="[A-Za-zÀ-ÖØ-öø-ÿ ]+" placeholder="Volunteer name"></label>
 <label><span>Email</span><input id="email" type="email" required placeholder="name@example.com"></label>
-<label><span>Phone</span><input id="phone" required placeholder="9876543210"></label>
+<label><span>Phone</span><input id="phone" required inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="9876543210"></label>
 </div><div class="modal-actions"><button type="button" class="btn ghost" onclick="closeVolunteer()">Cancel</button><button class="btn primary">Save volunteer</button></div></form></div></div>
 
 </main>

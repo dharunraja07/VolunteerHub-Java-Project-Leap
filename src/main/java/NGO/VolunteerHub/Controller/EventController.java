@@ -1,5 +1,6 @@
 package NGO.VolunteerHub.Controller;
 import NGO.VolunteerHub.Model.Event;
+import NGO.VolunteerHub.Exception.ResourceNotFoundException;
 import NGO.VolunteerHub.Service.EventService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,15 +35,19 @@ public class EventController {
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id) {
 
-        return eventService.getEventById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());}
+        Event event = eventService.getEventById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Event not found with ID: " + id));
+
+        return ResponseEntity.ok(event);}
 
     // UPDATE EVENT
     @PutMapping("/{id}")
     public ResponseEntity<Event> updateEvent(
             @PathVariable Long id,
             @Valid @RequestBody Event event) {
+
         Event updatedEvent =
                 eventService.updateEvent(id, event);
 

@@ -24,20 +24,20 @@
 <a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
 <a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
 </nav>
-<div class="side-foot"><i></i> System online</div>
+
 </aside>
 <main class="main" id="main-content">
 <header class="topbar">
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><span></span><span></span><span></span></button>
 <div><small class="eyebrow">VOLUNTEERHUB</small><h1>Signups</h1></div>
-<div class="online"><i></i> API Connected</div>
+
 </header>
 
 <section class="page"><div id="alert"></div>
 <div class="two-col top-gap">
 <section class="panel pad"><div class="panel-head"><div><h3>Register a volunteer</h3><p>Join a volunteer to an event.</p></div></div>
-<form id="signupForm" class="form-stack"><label><span>Event</span><select id="event" required><option value="">Select an event</option></select></label><label><span>Volunteer</span><select id="volunteer" required><option value="">Select a volunteer</option></select></label><button class="btn primary">Create signup</button></form></section>
-<section class="panel pad"><div class="panel-head"><div><h3>Event participants</h3><p>Choose an event to see who joined.</p></div></div><select id="filter" class="select"><option value="">Select an event</option></select><div id="participants" class="list"><div class="empty">Select an event.</div></div></section>
+<form id="signupForm" class="form-stack"><label><span>Event</span><input class="select-search" id="eventSearch" placeholder="Search events..." autocomplete="off"><select id="event" required><option value="">Select an event</option></select></label><label><span>Volunteer</span><input class="select-search" id="volunteerSearch" placeholder="Search by volunteer name or ID..." autocomplete="off"><select id="volunteer" required><option value="">Select a volunteer</option></select></label><button class="btn primary">Create signup</button></form></section>
+<section class="panel pad"><div class="panel-head"><div><h3>Event participants</h3><p>Choose an event to see who joined.</p></div></div><input class="select-search filter-search" id="filterSearch" placeholder="Search events..." autocomplete="off"><select id="filter" class="select"><option value="">Select an event</option></select><div id="participants" class="list"><div class="empty">Select an event.</div></div></section>
 </div>
 <section class="panel table-panel top-gap"><div class="panel-head"><div><h3>All signups</h3><p>Every volunteer-event registration.</p></div></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Volunteer</th><th>Event</th><th>Date</th><th>Action</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">Loading...</td></tr></tbody></table></div></section>
 </section>

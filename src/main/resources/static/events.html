@@ -24,13 +24,13 @@
 <a data-nav="signups" href="signups.html">☷ <span>Signups</span></a>
 <a data-nav="attendance" href="attendance.html">✓ <span>Attendance</span></a>
 </nav>
-<div class="side-foot"><i></i> System online</div>
+
 </aside>
 <main class="main" id="main-content">
 <header class="topbar">
 <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false"><span></span><span></span><span></span></button>
 <div><small class="eyebrow">VOLUNTEERHUB</small><h1>Events</h1></div>
-<div class="online"><i></i> API Connected</div>
+
 </header>
 
 <section class="page">
@@ -40,11 +40,11 @@
 </section>
 <div id="modal" class="modal hidden"><div class="shade" onclick="closeEvent()"></div><div class="modal-card"><div class="modal-head"><div><h2 id="modalTitle">Create event</h2><p>Enter the event details.</p></div><button onclick="closeEvent()">×</button></div>
 <form id="form"><input id="id" type="hidden"><div class="form-grid">
-<label><span>Title</span><input id="title" required placeholder="Beach Cleanup"></label>
+<label><span>Title</span><input id="title" required maxlength="120" placeholder="Beach Cleanup"></label>
 <label><span>Event date</span><input id="date" type="date" required></label>
 <label class="full"><span>Description</span><textarea id="description" rows="3" required placeholder="Describe the event..."></textarea></label>
-<label><span>Location</span><input id="location" required placeholder="Marina Beach"></label>
-<label><span>Capacity</span><input id="capacity" type="number" min="1" required placeholder="30"></label>
+<label><span>Location</span><input id="location" required maxlength="150" placeholder="Marina Beach"></label>
+<label><span>Capacity</span><input id="capacity" type="number" min="1" max="1000" required placeholder="30"></label>
 </div><div class="modal-actions"><button type="button" class="btn ghost" onclick="closeEvent()">Cancel</button><button class="btn primary">Save event</button></div></form></div></div>
 
 </main>

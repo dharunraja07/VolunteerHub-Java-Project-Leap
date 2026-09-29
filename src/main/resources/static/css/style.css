@@ -367,6 +367,43 @@ td strong{color:var(--ink)}
 .hours-box small{font-size:11px;color:var(--muted)}
 .hours-box strong{display:block;color:var(--primary);font-size:31px;margin-top:4px}
 
+
+/* Searchable select controls */
+.select-search{
+  width:100%;
+  min-height:40px;
+  margin-bottom:7px;
+  border:1px solid #dbe2ea;
+  border-radius:9px;
+  padding:9px 12px;
+  font-size:13px;
+  outline:0;
+  background:#fff;
+  color:var(--ink);
+}
+.select-search:focus{
+  border-color:#8fa5ec;
+  box-shadow:0 0 0 3px #3157d50d;
+}
+.hours-select-wrap{
+  flex:1;
+  min-width:0;
+}
+.hours-select-wrap .select-search{
+  margin:0;
+}
+.hours-select-wrap select{
+  width:100%;
+  margin-top:7px;
+}
+.form-stack .select-search{
+  margin-bottom:0;
+}
+.readonly{
+  background:#f7f9fc!important;
+  color:#64748b!important;
+}
+
 /* Alerts and modal */
 .alert{
   margin-bottom:17px;padding:12px 14px;
@@ -478,6 +515,10 @@ td strong{color:var(--ink)}
   body.menu-open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 }
 @media(max-width:600px){
+  .hours-search{align-items:stretch}
+  .hours-select-wrap{width:100%}
+  .hours-search .btn{width:100%}
+
   .topbar{min-height:76px;padding:13px 16px}
   .topbar h1{font-size:22px}
   .eyebrow{font-size:9px}

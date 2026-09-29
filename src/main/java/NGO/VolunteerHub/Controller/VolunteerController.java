@@ -1,5 +1,6 @@
 package NGO.VolunteerHub.Controller;
 import NGO.VolunteerHub.Model.Volunteer;
+import NGO.VolunteerHub.Exception.ResourceNotFoundException;
 import NGO.VolunteerHub.Service.VolunteerService;
 import NGO.VolunteerHub.Service.AttendanceService;
 import jakarta.validation.Valid;
@@ -49,9 +50,12 @@ public class VolunteerController {
     public ResponseEntity<Volunteer> getVolunteerById(
             @PathVariable Long id) {
 
-        return volunteerService.getVolunteerById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Volunteer volunteer = volunteerService.getVolunteerById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Volunteer not found with ID: " + id));
+
+        return ResponseEntity.ok(volunteer);
     }
 
     // Updating a Volunteer
